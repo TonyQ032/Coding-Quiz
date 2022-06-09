@@ -1,6 +1,6 @@
 /* placeholder text */
 :root {
-  --bg-color: #8467b9a6;
+  --bg-color: rgba(0, 0, 0, 0.25);;
   --quiz-bubble-color: #fff;
 }
 
@@ -9,7 +9,11 @@
 }
 
 body {
-  background-color: var(--bg-color);
+  /* background-color: var(--bg-color); */
+  background-image: url(../images/modified-bg-img.png);
+  background-position: center unset;
+  background-repeat:no-repeat;
+  background-size:100% 100vh;
 }
 
 header, main {
@@ -25,21 +29,22 @@ header, main {
 
 h1 {
   padding: 10px 30px;
-  background-color: white;
+  background-color: var(--bg-color);
   border-radius: 1rem;
   font-size: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: fit-content;
-  border: black 2px solid;
+  border: white 1px dashed;
   filter: drop-shadow(2px 4px 10px black);
   position: absolute;
-  top: 15%;
+  top: 10%;
+  color: white;
 }
 
 #main-card {
-  background-color: var(--quiz-bubble-color);
+  background-color: var(--bg-color);
   border-radius: 1rem;
   display: flex;
   justify-content: center;
@@ -51,10 +56,11 @@ h1 {
   padding: 30px 40px;
   min-height: 300px;
   margin: 10px;
-  border: black 2px solid;
+  border: white 1px dashed;
   filter: drop-shadow(2px 4px 10px black);
   position: absolute;
-  top: 25%;
+  top: 20%;
+  color: white;
 }
 
 #start-menu {
@@ -74,4 +80,10 @@ button {
   border-radius: 2rem;
   border: 1px solid black;
   cursor: pointer;
+}
+
+/* Give this id to all card screens not currently in use */
+/* Take away id when card in use */
+#disappear {
+  display: none;
 }

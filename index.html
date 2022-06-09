@@ -19,11 +19,48 @@
 
     <section id="main-card">
 
-      <div id="start-menu">
+      <div class="card" id="start-menu">
         <p>
           Description text that briefly explains what will happen when the button below is pushed...
         </p>
         <button type="button" id="start-quiz-btn" class="btn">Start Quiz</button>
+      </div>
+
+      <div class="card" id="transition-card">
+        <h2>Get ready!</h2>
+        <h2 id="start-countdown"></h2>
+        <!-- should countdown from 3 to 1 then display 'GO!' -->
+      </div>
+
+      <div class="card" id="question-card">
+        <p><span id="seconds-left"></span>: seconds remaining.</p>
+        <h2 id="question"><span id="question-number"></span></h2>
+        <ul>
+          <li>A. <span class="answers"></span></li>
+          <li>B. <span class="answers"></span></li>
+          <li>C. <span class="answers"></span></li>
+          <li>D. <span class="answers"></span></li>
+        </ul>
+        <!-- the <p> below appears after the user has selected an answer and tells them
+          if they chose correctly or incorrectly -->
+        <p id="correct-or-not"></p>
+      </div>
+
+      <div class="card" id="results-card">
+        <h2>Game over!</h2>
+        <p>You correctly answered a total of <span id="questions-answered"></span> questions!</p>
+        <p>Enter your initials: </p>
+          <input type="text" id="player-initials" name="player-initials" placeholder="Ex: 'AQ'">
+          <button type="button" id="submit-initials">Submit</button>
+      </div>
+
+      <div class="card" id="leaderboards">
+        <h2>High Scores</h2>
+        <ul>
+          <li class="high-score"></li>
+        </ul>
+        <button type="button" id="back-to-home">Play again</button>
+        <button type="button" id="reset-scores">Reset scores</button>
       </div>
 
     </section>
