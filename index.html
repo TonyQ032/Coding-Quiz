@@ -19,21 +19,21 @@
 
     <section id="main-card">
 
-      <div class="card" id="start-menu">
+      <div class="card start-card" id="appear">
         <p>
           Description text that briefly explains what will happen when the button below is pushed...
         </p>
         <button type="button" id="start-quiz-btn" class="btn">Start Quiz</button>
       </div>
 
-      <div class="card" id="transition-card">
+      <div class="card transition-card">
         <h2>Get ready!</h2>
         <h2 id="start-countdown"></h2>
         <!-- should countdown from 3 to 1 then display 'GO!' -->
       </div>
 
-      <div class="card" id="question-card">
-        <p><span id="seconds-left"></span>: seconds remaining.</p>
+      <div class="card question-card">
+        <p id="seconds-left"></p>
         <h2 id="question"><span id="question-number"></span></h2>
         <ul>
           <li>A. <span class="answers"></span></li>
@@ -46,7 +46,7 @@
         <p id="correct-or-not"></p>
       </div>
 
-      <div class="card" id="results-card">
+      <div class="card results-card">
         <h2>Game over!</h2>
         <p>You correctly answered a total of <span id="questions-answered"></span> questions!</p>
         <p>Enter your initials: </p>
@@ -54,7 +54,7 @@
           <button type="button" id="submit-initials">Submit</button>
       </div>
 
-      <div class="card" id="leaderboards">
+      <div class="card leaderboard-card">
         <h2>High Scores</h2>
         <ul>
           <li class="high-score"></li>

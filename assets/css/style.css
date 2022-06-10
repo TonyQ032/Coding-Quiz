@@ -1,6 +1,6 @@
 /* placeholder text */
 :root {
-  --bg-color: rgba(0, 0, 0, 0.25);;
+  --bg-color: rgba(0, 0, 0, 0.25);
   --quiz-bubble-color: #fff;
 }
 
@@ -63,14 +63,6 @@ h1 {
   color: white;
 }
 
-#start-menu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-
 button {
   padding: 10px 10px;
   font-size: 18px;
@@ -84,6 +76,19 @@ button {
 
 /* Give this id to all card screens not currently in use */
 /* Take away id when card in use */
+
+.start-card, .transition-card, .question-card, .results-card, .leaderboard-card {
+  display: none;
+}
+
 #disappear {
   display: none;
+}
+
+#appear {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
