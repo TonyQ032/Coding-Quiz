@@ -6,7 +6,10 @@ const resultsCard = document.querySelector(".results-card");
 const leaderboardCard = document.querySelector(".leaderboard-card");
 const menuCards = [startCard, transitionCard, questionCard, resultsCard, leaderboardCard];
 
-// 
+const mainCard = document.querySelector("#main-card");
+const headerCard = document.querySelector("h1");
+
+// starts game
 function startGame() {
   console.log("start");
   startCard.removeAttribute("id", "appear");
@@ -39,16 +42,15 @@ let preCountDown = 4;
 
 function countDown() {
   let timeEl = document.querySelector("#start-countdown");
+
   let timeInterval = setInterval(function() {
     preCountDown--;
     timeEl.textContent = preCountDown;
 
     if(preCountDown === 0) {
       clearInterval(timeInterval);
-      timeEl.textContent = "Go!";
       nextCard2();
     }
-
   }, 1000);
 }
 
@@ -70,3 +72,17 @@ function gameTime() {
 }
 
 startQuizButton.addEventListener("click", startGame);
+
+function placeHolder() {
+  //default card colors
+  mainCard.style.cssText = "filter: drop-shadow(2px 4px 10px black); border: white 1px dashed;) ";
+  headerCard.style.cssText = "filter: drop-shadow(2px 4px 10px black); border: white 1px dashed;) ";
+
+  //turns cards green
+  mainCard.style.cssText = "filter: drop-shadow(2px 4px 10px #349e00); border: #4be300 1px dashed;) ";
+  headerCard.style.cssText = "filter: drop-shadow(2px 4px 10px #349e00); border: #4be300 1px dashed;) ";
+
+  //turns cards red
+  mainCard.style.cssText = "filter: drop-shadow(2px 4px 10px #b31313); border: #ff0000 1px dashed;) ";
+  headerCard.style.cssText = "filter: drop-shadow(2px 4px 10px #b31313); border: #ff0000 1px dashed;) ";
+}

@@ -16,6 +16,10 @@ body {
   background-size:100% 100vh;
 }
 
+p, li, button {
+  font-size: 20px;
+}
+
 header, main {
   padding-left: 20px;
   padding-right: 20px;
@@ -54,7 +58,7 @@ h1 {
   min-width: 800px;
   max-width: 1000px;
   padding: 30px 40px;
-  min-height: 300px;
+  min-height: 400px;
   margin: 10px;
   border: white 1px dashed;
   filter: drop-shadow(2px 4px 10px black);
@@ -65,7 +69,6 @@ h1 {
 
 button {
   padding: 10px 10px;
-  font-size: 18px;
   margin: 5px;
   background-color: #643fa7;
   color: #fafafa;
