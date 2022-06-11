@@ -95,3 +95,21 @@ button {
   flex-wrap: wrap;
   flex-direction: column;
 }
+
+/* styles the question answer choices */
+.question-card ul li {
+  border: white 1px solid;
+  margin: 20px;
+  padding: 10px 20px;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.question-card ul li:hover {
+  background-color: rgba(100, 63, 167, 0.5);
+  filter: drop-shadow(2px 2px 20px white);
+}
+
+#seconds-left {
+  padding-bottom: 5px;
+}

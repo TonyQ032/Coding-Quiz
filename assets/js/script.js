@@ -9,6 +9,9 @@ const menuCards = [startCard, transitionCard, questionCard, resultsCard, leaderb
 const mainCard = document.querySelector("#main-card");
 const headerCard = document.querySelector("h1");
 
+const submitInitials = document.querySelector("#submit-initials");
+const playAgainButton = document.querySelector("#back-to-home");
+
 // starts game
 function startGame() {
   console.log("start");
@@ -37,10 +40,32 @@ function nextCard2() {
   gameTime();
 }
 
+//closes quiz menu, opens results card
+function nextCard3() {
+  menuCards[2].removeAttribute("id", "appear");
+  menuCards[3].setAttribute("id", "appear");
+}
+
+//closes results card, opens leaderboard card
+function nextCard4() {
+  menuCards[3].removeAttribute("id", "appear");
+  menuCards[4].setAttribute("id", "appear");
+}
+
+function backToMenuCard() {
+  for (let i = 0; i < 5; i++) {
+    if (menuCards[i].id === ("appear")) {
+      menuCards[i].removeAttribute("id", "appear");
+    }
+    startCard.setAttribute("id", "appear");
+  }
+}
+
 // pre-game timer
-let preCountDown = 4;
 
 function countDown() {
+  let preCountDown = 4;
+
   let timeEl = document.querySelector("#start-countdown");
 
   let timeInterval = setInterval(function() {
@@ -49,16 +74,16 @@ function countDown() {
 
     if(preCountDown === 0) {
       clearInterval(timeInterval);
+      preCountDown = 4;
+      timeEl.textContent = "";
       nextCard2();
     }
   }, 1000);
 }
 
-
 // timer for questions in game
-let secondsLeftInGame = 91;
-
 function gameTime() {
+  let secondsLeftInGame = 91;
   let gameTimer = document.querySelector("#seconds-left");
   let timeInterval = setInterval(function() {
     secondsLeftInGame--;
@@ -66,12 +91,23 @@ function gameTime() {
 
     if(secondsLeftInGame === 0) {
       clearInterval(timeInterval);
+      secondsLeftInGame = 91;
+      gameTimer.textContent = "";
+      nextCard3();
     }
 
   }, 1000);
 }
 
+
+
+
+// clicking on start button starts game
 startQuizButton.addEventListener("click", startGame);
+
+submitInitials.addEventListener("click", nextCard4);
+
+playAgainButton.addEventListener("click", backToMenuCard);
 
 function placeHolder() {
   //default card colors
