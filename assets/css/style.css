@@ -103,6 +103,7 @@ button {
   padding: 10px 20px;
   border-radius: 1rem;
   background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .question-card ul li:hover {
@@ -112,4 +113,16 @@ button {
 
 #seconds-left {
   padding-bottom: 5px;
+}
+
+.results-card {
+  gap: 15px;
+}
+
+.start-card {
+  gap: 10px;
+}
+
+.leaderboard-card {
+  gap: 5px;
 }

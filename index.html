@@ -29,18 +29,17 @@
       <div class="card transition-card">
         <h2>Get ready!</h2>
         <h2 id="start-countdown"></h2>
-        <!-- should countdown from 3 to 1 then display 'GO!' -->
       </div>
 
       <div class="card question-card">
-        <p id="seconds-left">90: seconds remaining.</p>
-        <h2 id="question"><span id="question-number">Test question goes here, hopefully it looks good! what about if i make this question super long, how will the page react?</span></h2>
+        <h2 id="question">Test question goes here, hopefully it looks good! what about if i make this question super long, how will the page react?</h2>
         <ul>
-          <li>A. <span class="answers">This ia a test</span></li>
+          <li>A. <span class="answers">This is a test</span></li>
           <li>B. <span class="answers">Also a test</span></li>
           <li>C. <span class="answers">egfgdfg dfg dfg dfg dfgd f4</span></li>
           <li>D. <span class="answers">test</span></li>
         </ul>
+        <p id="seconds-left">60: seconds remaining.</p>
         <!-- the <p> below appears after the user has selected an answer and tells them
           if they chose correctly or incorrectly -->
         <p id="correct-or-not"></p>
@@ -59,8 +58,10 @@
         <ul>
           <li class="high-score"></li>
         </ul>
-        <button type="button" id="back-to-home">Play again</button>
-        <button type="button" id="reset-scores">Reset scores</button>
+        <div id="lb-buttons">
+          <button type="button" id="back-to-home">Play again</button>
+          <button type="button" id="reset-scores">Reset scores</button>
+        </div>
       </div>
 
     </section>
