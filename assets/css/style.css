@@ -105,18 +105,29 @@ button {
 }
 
 /* styles the question answer choices */
-.question-card ul li {
+.question-card div button {
   border: white 1px solid;
-  margin: 20px;
+  margin: 10px;
   padding: 10px 20px;
   border-radius: 1rem;
   background-color: rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  display: block;
+  align-items: center;
 }
 
-.question-card ul li:hover {
+.question-card div button:hover {
   background-color: rgba(100, 63, 167, 0.5);
   filter: drop-shadow(2px 2px 20px white);
+}
+
+#answer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 10px 0;
 }
 
 #seconds-left {
