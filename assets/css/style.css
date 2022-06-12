@@ -67,6 +67,14 @@ h1 {
   color: white;
 }
 
+h2 {
+  text-align: center;
+}
+
+.answers {
+  text-align: center;
+}
+
 button {
   padding: 10px 10px;
   margin: 5px;
