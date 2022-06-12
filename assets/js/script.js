@@ -16,6 +16,9 @@ const correctOrNot = document.querySelector("#correct-or-not");
 let answerContainer = document.querySelector("#answer-container");
 let answerBtn = document.querySelectorAll(".answer-button");
 
+let playerScore = 0;
+const questionsAnswered = document.querySelector("#questions-answered");
+
 // Non-answer buttons
 const startQuizButton = document.querySelector("#start-quiz-btn");
 const submitInitials = document.querySelector("#submit-initials");
@@ -165,7 +168,10 @@ let questions = [{
 function startGame() {
 
   //Allows questions to be reused if played again
-  questionsUsed = []
+  questionsUsed = [];
+
+  //Resets player score if replayed
+  playerScore = 0;
 
   //Deletes previous answers generated
   answerContainer.replaceChildren();
@@ -198,6 +204,8 @@ function nextCard2() {
 function nextCard3() {
   menuCards[2].removeAttribute("id", "appear");
   menuCards[3].setAttribute("id", "appear");
+  questionsAnswered.textContent = "";
+  questionsAnswered.textContent = playerScore;
 }
 
 //closes results card, opens leaderboard card
@@ -228,7 +236,7 @@ function countDown() {
     preCountDown--;
     timeEl.textContent = preCountDown;
 
-    if(preCountDown === 0) {
+    if(preCountDown <= 0) {
       clearInterval(timeInterval);
       preCountDown = 4;
       timeEl.textContent = "";
@@ -252,12 +260,15 @@ function gameTime() {
       gameTimer.textContent = "";
       nextCard3();
     }
-
+    if (questionsUsed.length === 11) {
+      clearInterval(timeInterval);
+      secondsLeftInGame = 61;
+      gameTimer.textContent = "";
+      nextCard3();
+      displayQuizCard();
+    };
   }, 1000);
 }
-
-
-
 
 // Displays question on to page when used
 function displayQuestions(a) {
@@ -324,6 +335,7 @@ answerContainer.addEventListener("click", (event) => {
   if (variable.matches("button")) {
     let answer = event.target.classList.contains(true);
     if (answer === true) {
+      playerScore++;
       event.target.classList.add("correct");
       correctOrNot.textContent = "Correct!";
       correctOrNot.setAttribute("class", "correct-text");
@@ -334,6 +346,8 @@ answerContainer.addEventListener("click", (event) => {
       correctOrNot.setAttribute("class", "incorrect-text");
       console.log("incorrect");
     };
+
+    console.log(questionsUsed);
 
     if (questionsUsed.length < questions.length) {
       //clearDisplay();

@@ -142,6 +142,12 @@ button {
   gap: 10px;
 }
 
+.start-card p {
+  width: 600px;
+  text-align: center;
+  line-height: 1.5;
+}
+
 .leaderboard-card {
   gap: 5px;
 }
