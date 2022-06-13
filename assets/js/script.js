@@ -4,20 +4,17 @@ const transitionCard = document.querySelector(".transition-card");
 const questionCard = document.querySelector(".question-card");
 const resultsCard = document.querySelector(".results-card");
 const leaderboardCard = document.querySelector(".leaderboard-card");
-
 const menuCards = [startCard, transitionCard, questionCard, resultsCard, leaderboardCard];
 
+//Used for dynamic styling
 const mainCard = document.querySelector("#main-card");
 const headerCard = document.querySelector("h1");
 
-// Quiz variables
+// Quiz card elements
 const quizQuestion = document.querySelector("#question");
 const correctOrNot = document.querySelector("#correct-or-not");
 let answerContainer = document.querySelector("#answer-container");
 let answerBtn = document.querySelectorAll(".answer-button");
-
-let playerScore = 0;
-const questionsAnswered = document.querySelector("#questions-answered");
 
 // Non-answer buttons
 const startQuizButton = document.querySelector("#start-quiz-btn");
@@ -27,7 +24,12 @@ const playAgainButton = document.querySelector("#back-to-home");
 //Function variables
 let questionsUsed = [];
 let questionIndex;
-// -------------------------
+let playerScore = 0;
+
+//Misc
+const questionsAnswered = document.querySelector("#questions-answered");
+
+// --------------------------------------------
 
 // All the quiz questions and answers
 let questions = [{
@@ -175,26 +177,18 @@ function startGame() {
 
   //Deletes previous answers generated
   answerContainer.replaceChildren();
-  startCard.removeAttribute("id", "appear");
-  transitionCard.setAttribute("id", "appear");
-
+  nextCard();
   countDown();
 };
 
-// at the moment i will be making individual "nextCard" functions that change to the next card
-// however by the end of the project these should all be in one single function
-// (utilizing a for loop and conditional statements most likely)
-
-// Closes menu card, opens next card
+// Closes menu card, opens transition card
 function nextCard() {
-  console.log("ran nextCard");
   menuCards[0].removeAttribute("id", "appear");
   menuCards[1].setAttribute("id", "appear");
 }
 
 //Closes countdown menu, opens question card
 function nextCard2() {
-  console.log("ran nextCard");
   menuCards[1].removeAttribute("id", "appear");
   menuCards[2].setAttribute("id", "appear");
   gameTime();
@@ -204,8 +198,14 @@ function nextCard2() {
 function nextCard3() {
   menuCards[2].removeAttribute("id", "appear");
   menuCards[3].setAttribute("id", "appear");
+
+  //Displays total amount of correct answers player received
   questionsAnswered.textContent = "";
   questionsAnswered.textContent = playerScore;
+
+  //Reverts card colors back to normal if card transitions mid color change
+  mainCard.style.cssText = "filter: drop-shadow(2px 4px 10px black); border: white 1px dashed;) ";
+  headerCard.style.cssText = "filter: drop-shadow(2px 4px 10px black); border: white 1px dashed;) ";
 }
 
 //closes results card, opens leaderboard card
@@ -214,8 +214,7 @@ function nextCard4() {
   menuCards[4].setAttribute("id", "appear");
 }
 
-// Returns to menu card from any card (debugging purposes)
-// Will be deleted in final version
+// Returns to menu card from any card
 function backToMenuCard() {
   for (let i = 0; i < 5; i++) {
     if (menuCards[i].id === ("appear")) {
@@ -247,14 +246,15 @@ function countDown() {
 }
 
 // timer for questions in game
+let secondsLeftInGame = 61;
+
 function gameTime() {
-  let secondsLeftInGame = 61;
   let gameTimer = document.querySelector("#seconds-left");
   let timeInterval = setInterval(function() {
     secondsLeftInGame--;
     gameTimer.textContent = secondsLeftInGame + ": seconds remaining.";
 
-    if(secondsLeftInGame === 0) {
+    if(secondsLeftInGame <= 0) {
       clearInterval(timeInterval);
       secondsLeftInGame = 61;
       gameTimer.textContent = "";
@@ -317,11 +317,6 @@ function displayQuizCard() {
   displayAnswers(questionIndex)
 };
 
-// Ends game (not functioning yet)
-function gameOver() {
-
-}
-
 // clicking on start button starts game
 startQuizButton.addEventListener("click", startGame);
 
@@ -329,48 +324,88 @@ submitInitials.addEventListener("click", nextCard4);
 
 playAgainButton.addEventListener("click", backToMenuCard);
 
+
+//Complex function triggered when user clicks on an answer
+//Checks to see if the answer is correct or not and executes various functions depending on that
 answerContainer.addEventListener("click", (event) => {
   let variable = event.target;
 
   if (variable.matches("button")) {
     let answer = event.target.classList.contains(true);
-    if (answer === true) {
+
+    //If the answer selected is correct, it adds a point to the player score and continues the game
+    //(unless the player is on the tenth question)
+    if (answer === true && (questionsUsed.length < questions.length)) {
       playerScore++;
+      correctAnswer();
       event.target.classList.add("correct");
-      correctOrNot.textContent = "Correct!";
-      correctOrNot.setAttribute("class", "correct-text");
-      console.log("correct");
-    } else {
+
+    } else if (answer === false && (questionsUsed.length < questions.length)) {
+      wrongAnswer();
       event.target.classList.add("incorrect");
-      correctOrNot.textContent = "Incorrect!";
-      correctOrNot.setAttribute("class", "incorrect-text");
-      console.log("incorrect");
-    };
 
-    console.log(questionsUsed);
-
-    if (questionsUsed.length < questions.length) {
-      //clearDisplay();
-      displayQuizCard();
-    }
-    else {
-      //gameOver()
+    } else {
       nextCard3()
-    };
+    }
+    console.log(questionsUsed);
   }
 });
 
-//Will change site colors depending on right or wrong
-function placeHolder() {
-  //default card colors
-  mainCard.style.cssText = "filter: drop-shadow(2px 4px 10px black); border: white 1px dashed;) ";
-  headerCard.style.cssText = "filter: drop-shadow(2px 4px 10px black); border: white 1px dashed;) ";
+//Function ran if the user selects the correct answer
+function correctAnswer() {
+  //Changes display colors to green
+  mainCard.style.cssText = "filter: drop-shadow(2px 4px 10px green); border: #4be300 1px dashed;) ";
+  headerCard.style.cssText = "filter: drop-shadow(2px 4px 10px green); border: #4be300 1px dashed;) ";
 
-  //turns cards green
-  mainCard.style.cssText = "filter: drop-shadow(2px 4px 10px #349e00); border: #4be300 1px dashed;) ";
-  headerCard.style.cssText = "filter: drop-shadow(2px 4px 10px #349e00); border: #4be300 1px dashed;) ";
+  correctOrNot.textContent = "Correct!";
+  correctOrNot.setAttribute("class", "incorrect-text");
 
-  //turns cards red
+  //Allows effects to remain on screen for 1.5 seconds
+  let secondsOfResponse = 1;
+  let intervalTime = setInterval(function() {
+    secondsOfResponse--;
+
+    if(secondsOfResponse === 0) {
+      clearInterval(intervalTime);
+      secondsOfResponse = 1;
+      correctOrNot.textContent = "";
+
+      //Changes display colors back to normal
+      mainCard.style.cssText = "filter: drop-shadow(2px 4px 10px black); border: white 1px dashed;) ";
+      headerCard.style.cssText = "filter: drop-shadow(2px 4px 10px black); border: white 1px dashed;) ";
+      
+      //Moves to next question
+      displayQuizCard();
+    }
+  }, 1500);
+}
+
+function wrongAnswer() {
+  //Changes display colors to red
   mainCard.style.cssText = "filter: drop-shadow(2px 4px 10px #b31313); border: #ff0000 1px dashed;) ";
   headerCard.style.cssText = "filter: drop-shadow(2px 4px 10px #b31313); border: #ff0000 1px dashed;) ";
+
+  correctOrNot.textContent = "Incorrect!";
+  correctOrNot.setAttribute("class", "correct-text");
+
+  //Removes ten seconds from timer 
+  secondsLeftInGame = secondsLeftInGame - 10;
+
+  //Allows effects to remain on screen for 1.5 seconds
+  let secondsOfResponse = 1;
+  let intervalTime = setInterval(function() {
+    secondsOfResponse--;
+    if(secondsOfResponse === 0) {
+      clearInterval(intervalTime);
+      secondsOfResponse = 1;
+      correctOrNot.textContent = "";
+
+      //Changes display colors back to normal
+      mainCard.style.cssText = "filter: drop-shadow(2px 4px 10px black); border: white 1px dashed;) ";
+      headerCard.style.cssText = "filter: drop-shadow(2px 4px 10px black); border: white 1px dashed;) ";
+      
+      //Moves to next question
+      displayQuizCard();
+    }
+  }, 1500);
 }
