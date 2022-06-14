@@ -1,11 +1,13 @@
-/* placeholder text */
 :root {
   --bg-color: rgba(0, 0, 0, 0.25);
   --quiz-bubble-color: #fff;
 }
 
+/* General CSS */
+
 * {
   font-family: sans-serif;
+  overflow: hidden;
 }
 
 body {
@@ -46,6 +48,22 @@ h1 {
   color: white;
 }
 
+h2 {
+  text-align: center;
+}
+
+button {
+  padding: 10px 10px;
+  margin: 5px;
+  background-color: #643fa7;
+  color: #fafafa;
+  border-radius: 2rem;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+/* Specific CSS for every card */
+
 #main-card {
   background-color: var(--bg-color);
   border-radius: 1rem;
@@ -66,26 +84,78 @@ h1 {
   color: white;
 }
 
-h2 {
+/* Starting menu card CSS */
+
+.start-card {
+  gap: 10px;
+}
+
+.start-card p {
+  width: 600px;
   text-align: center;
+  line-height: 1.5;
+}
+
+/* Question card CSS */
+
+.question-card div button {
+  border: white 1px solid;
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: block;
+  align-items: center;
+}
+
+.question-card div button:hover {
+  background-color: rgba(100, 63, 167, 0.5);
+}
+
+#answer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+#seconds-left {
+  padding-bottom: 5px;
 }
 
 .answers {
   text-align: center;
 }
 
-button {
-  padding: 10px 10px;
-  margin: 5px;
-  background-color: #643fa7;
-  color: #fafafa;
-  border-radius: 2rem;
-  border: 1px solid black;
-  cursor: pointer;
+/* Results card CSS */
+
+.results-card {
+  gap: 15px;
 }
 
-/* Give this id to all card screens not currently in use */
-/* Take away id when card in use */
+#questions-answered {
+  font-size: 24px;
+}
+
+/* Leaderboard card CSS */
+
+.leaderboard-card {
+  gap: 5px;
+}
+
+li {
+  border: white 1px solid;
+  padding: 5px 30px;
+  border-radius: 1rem;
+  background-color: var(--bg-color);
+  margin: 5px;
+}
+
+/* Card display types */
+/* All card (except for the card currently in use, are given 'display: none;' */
 
 .start-card, .transition-card, .question-card, .results-card, .leaderboard-card {
   display: none;
@@ -103,80 +173,18 @@ button {
   flex-direction: column;
 }
 
-/* styles the question answer choices */
-.question-card div button {
-  border: white 1px solid;
-  margin: 10px;
-  padding: 10px 20px;
-  border-radius: 1rem;
-  background-color: rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  display: block;
-  align-items: center;
-}
-
-.question-card div button:hover {
-  background-color: rgba(100, 63, 167, 0.5);
-  filter: drop-shadow(2px 2px 20px white);
-}
-
-#answer-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-  margin: 10px 0;
-}
-
-#seconds-left {
-  padding-bottom: 5px;
-}
-
-.results-card {
-  gap: 15px;
-}
-
-.start-card {
-  gap: 10px;
-}
-
-.start-card p {
-  width: 600px;
-  text-align: center;
-  line-height: 1.5;
-}
-
-.leaderboard-card {
-  gap: 5px;
-}
-
-#questions-answered {
-  font-size: 24px;
-}
-
-li {
-  border: white 1px solid;
-  padding: 5px 30px;
-  border-radius: 1rem;
-  background-color: var(--bg-color);
-  margin: 5px;
-}
+/* Minor changes to website for screen sizes */
 
 @media (max-width: 770px) {
 
   body {
     background-position: center unset;
+    background-size: 350%;
     background-repeat:repeat;
   }
 
-  #main-card {
-    top: 22%;
-    min-width: 100%;
-    max-width: auto;
-    padding: 0;
-    min-height: 400px;
-    margin: 5px;
+  p {
+    padding: 10px;
   }
 
   h1 {
@@ -193,14 +201,24 @@ li {
     font-size: 20px;
   }
 
+  #main-card {
+    top: 22%;
+    min-width: 100%;
+    max-width: auto;
+    padding: 0;
+    min-height: 400px;
+    margin: 5px;
+  }
+
   .start-card p {
     width: auto;
     text-align: center;
   }
 
-  p {
-    padding: 10px;
+  .results-card p {
+    text-align: center;
   }
+
 }
 
 @media (max-width: 410px) {

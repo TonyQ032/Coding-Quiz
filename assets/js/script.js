@@ -201,7 +201,7 @@ function nextCard3() {
   menuCards[3].setAttribute("id", "appear");
 
   //Displays total amount of correct answers player received
-  questionsAnswered.textContent = "";
+  questionsAnswered.textContent = null;
   questionsAnswered.textContent = playerScore;
 
   //Reverts card colors back to normal if card transitions mid color change
@@ -246,7 +246,7 @@ function countDown() {
   }, 1000);
 }
 
-// timer for questions in game
+//Timer for questions in game
 let secondsLeftInGame = 61;
 
 function gameTime() {
@@ -276,6 +276,7 @@ function displayQuestions(a) {
   quizQuestion.textContent = questions[a].question;
 }
 
+// Displays possible answer choices to screen
 function displayAnswers(a) {
   let answersGenerated = questions[a].answers;
   for (let i = 0; i < answersGenerated.length; i++) {
@@ -283,7 +284,7 @@ function displayAnswers(a) {
     let answer = answersGenerated[i].answer;
 
     let answerButton = document.createElement('button');
-    answerButton.classList.add("answer-button", `${answer}`);
+    answerButton.classList.add("answer-button", JSON.stringify(answer));
 
     answerButton.textContent = answersGenerated[i].text;
     answerContainer.appendChild(answerButton);
@@ -318,12 +319,11 @@ function displayQuizCard() {
   displayAnswers(questionIndex);
 };
 
-//Complex function triggered when user clicks on an answer
 //Checks to see if the answer is correct or not and executes various functions depending on that
-answerContainer.addEventListener("click", (event) => {
-  let variable = event.target;
+answerContainer.addEventListener("click", function(event) {
+  let buttonCheck = event.target;
 
-  if (variable.matches("button")) {
+  if (buttonCheck.matches("button")) {
     let answer = event.target.classList.contains(true);
 
     //If the answer selected is correct, it adds a point to the player score and continues the game
@@ -350,7 +350,6 @@ function correctAnswer() {
   headerCard.style.cssText = "filter: drop-shadow(2px 4px 10px green); border: #4be300 1px dashed;) ";
 
   correctOrNot.textContent = "Correct!";
-  correctOrNot.setAttribute("class", "incorrect-text");
 
   //Allows effects to remain on screen for 1.5 seconds
   let secondsOfResponse = 1;
@@ -378,7 +377,6 @@ function wrongAnswer() {
   headerCard.style.cssText = "filter: drop-shadow(2px 4px 10px #b31313); border: #ff0000 1px dashed;) ";
 
   correctOrNot.textContent = "Incorrect!";
-  correctOrNot.setAttribute("class", "correct-text");
 
   //Removes ten seconds from timer 
   secondsLeftInGame = secondsLeftInGame - 10;
