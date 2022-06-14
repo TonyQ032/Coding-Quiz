@@ -21,7 +21,7 @@
 
       <div class="card start-card" id="appear">
         <p>
-          Can you answer all ten questions before the timer runs out? You've got to be quick but also careful!
+          Can you answer ten random questions before the timer runs out? You've got to be quick but also careful!
           Every wrong answer reduces the amount of time you have left. Good luck!
         </p>
         <button type="button" id="start-quiz-btn" class="btn">Start Quiz</button>
@@ -45,16 +45,14 @@
       <div class="card results-card">
         <h2>Game over!</h2>
         <p>You correctly answered a total of <span id="questions-answered"></span> questions!</p>
-        <p>Enter your initials: </p>
-          <input type="text" id="player-initials" name="player-initials" placeholder="Ex: 'AQ'">
-          <button type="button" id="submit-initials">Submit</button>
+        <label for="player-initials">Enter your initials: </label>
+        <input pattern="[a-zA-Z]*" type="text" id="player-initials" name="player-initials" placeholder="Ex: 'AQ'">
+        <button type="button" id="submit-initials">Submit</button>
       </div>
 
       <div class="card leaderboard-card">
         <h2>High Scores</h2>
-        <ul>
-          <li class="high-score"></li>
-        </ul>
+        <ul id="leaderboard"></ul>
         <div id="lb-buttons">
           <button type="button" id="back-to-home">Play again</button>
           <button type="button" id="reset-scores">Reset scores</button>

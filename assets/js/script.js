@@ -20,6 +20,7 @@ let answerBtn = document.querySelectorAll(".answer-button");
 const startQuizButton = document.querySelector("#start-quiz-btn");
 const submitInitials = document.querySelector("#submit-initials");
 const playAgainButton = document.querySelector("#back-to-home");
+const resetScoreButton = document.querySelector("#reset-scores");
 
 //Function variables
 let questionsUsed = [];
@@ -317,14 +318,6 @@ function displayQuizCard() {
   displayAnswers(questionIndex)
 };
 
-// clicking on start button starts game
-startQuizButton.addEventListener("click", startGame);
-
-submitInitials.addEventListener("click", nextCard4);
-
-playAgainButton.addEventListener("click", backToMenuCard);
-
-
 //Complex function triggered when user clicks on an answer
 //Checks to see if the answer is correct or not and executes various functions depending on that
 answerContainer.addEventListener("click", (event) => {
@@ -409,3 +402,70 @@ function wrongAnswer() {
     }
   }, 1500);
 }
+
+//Takes user initials and score, logs it to leaderboard
+let scoreInput = document.querySelector("#player-initials");
+let leaderboardEl = document.querySelector("#leaderboard");
+let scores = [];
+
+function renderLeaderboard() {
+  leaderboardEl.innerHTML = "";
+
+  console.log("button pressed");
+  for (let i = 0; i < scores.length; i++) {
+    let score = scores[i];
+
+    console.log("loop is working");
+    let liEl = document.createElement("li");
+    liEl.textContent = score;
+
+    leaderboardEl.appendChild(liEl);
+  }
+}
+
+//Checks localStorage for previous scores
+function init() {
+  let storedScores = JSON.parse(localStorage.getItem("scores"));
+
+  if (storedScores !== null) {
+    scores = storedScores;
+  }
+
+  renderLeaderboard();
+}
+
+//Stores the user scores into localStorage
+function storeScores() {
+  localStorage.setItem("scores", JSON.stringify(scores))
+}
+
+//Submits user initials and score to leaderboard when 'Submit' button is pressed
+submitInitials.addEventListener("click", function(event) {
+  let scoreText = scoreInput.value.trim();
+  if (scoreText === "") {
+    return;
+  }
+
+  scores.push(playerScore + " - " + scoreText);
+  scoreInput.value = "";
+
+  storeScores();
+  renderLeaderboard();
+})
+
+//Clears scores saved
+function resetScores() {
+  scores.length = 0;
+  storeScores();
+  renderLeaderboard();
+}
+
+init();
+
+resetScoreButton.addEventListener("click", resetScores);
+
+startQuizButton.addEventListener("click", startGame);
+
+submitInitials.addEventListener("click", nextCard4);
+
+playAgainButton.addEventListener("click", backToMenuCard);

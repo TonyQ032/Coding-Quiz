@@ -151,3 +151,15 @@ button {
 .leaderboard-card {
   gap: 5px;
 }
+
+#questions-answered {
+  font-size: 24px;
+}
+
+li {
+  border: white 1px solid;
+  padding: 5px 30px;
+  border-radius: 1rem;
+  background-color: var(--bg-color);
+  margin: 5px;
+}
