@@ -165,7 +165,53 @@ let questions = [{
   }, {
     text: "<!DOCTYPE HTML>", answer: true
   }]
-}];
+}, { 
+  question: "In HTML, where should the title of the website be located?",
+  answers: [{
+    text: "In the <footer> element", answer: false
+  }, {
+    text: "In the <head> element", answer: true
+  }, {
+    text: "In the <main> element", answer: false
+  }, {
+    text: "In a separate CSS file", answer: false
+  }]
+}, { 
+  question: "What JavaScript method would you use to verify the data type of a variable?",
+  answers: [{
+    text: ".length", answer: false
+  }, {
+    text: ".value", answer: false
+  }, {
+    text: ".typeOf", answer: true
+  }, {
+    text: ".getItem", answer: false
+  }]
+}, { 
+  question: "Where is typically the best place to store variables in a CSS document?",
+  answers: [{
+    text: "In the :root{} section", answer: true
+  }, {
+    text: "Inside an ID selector", answer: false
+  }, {
+    text: "In the navbar", answer: false
+  }, {
+    text: "CSS has no variables", answer: false
+  }]
+}, { 
+  question: "Which of the following properly declares an empty array in JavaScript?",
+  answers: [{
+    text: "var array = ()", answer: false
+  }, {
+    text: "var array = {}", answer: false
+  }, {
+    text: "var array = <>", answer: false
+  }, {
+    text: "var array = []", answer: true
+  }]
+},
+
+];
 
 // Starts game
 function startGame() {
@@ -291,7 +337,7 @@ function displayAnswers(a) {
   }
 }
 
-// Generates a random number between 0 and 11 (used to decide question order)
+// Generates a random number (used to decide question order)
 function randomNumber() {
   return Math.floor(Math.random() * questions.length);
 }
