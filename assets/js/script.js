@@ -315,7 +315,7 @@ function displayQuizCard() {
 
   // Displays the current questions and answers using the generated questionIndex
   displayQuestions(questionIndex);
-  displayAnswers(questionIndex)
+  displayAnswers(questionIndex);
 };
 
 //Complex function triggered when user clicks on an answer
@@ -340,7 +340,6 @@ answerContainer.addEventListener("click", (event) => {
     } else {
       nextCard3()
     }
-    console.log(questionsUsed);
   }
 });
 
@@ -411,11 +410,9 @@ let scores = [];
 function renderLeaderboard() {
   leaderboardEl.innerHTML = "";
 
-  console.log("button pressed");
   for (let i = 0; i < scores.length; i++) {
     let score = scores[i];
 
-    console.log("loop is working");
     let liEl = document.createElement("li");
     liEl.textContent = score;
 
